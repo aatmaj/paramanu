@@ -2,53 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Paramanu.ai — Atomic Intelligence for Pharma</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 2em;
-      background: #fdfdfd;
-      color: #222;
-    }
-    form {
-      max-width: 400px;
-      margin: 2em auto;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #1976d2;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #145ea8;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paramanu.ai – Atomic Intelligence for Pharma</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>🔬 Paramanu.ai</h1>
-  <h2>Atomic Intelligence for Pharma</h2>
-  <p style="max-width:600px; margin:auto;">We are reimagining pharma sales and regulatory intelligence with AI that’s precise, contextual, and field-ready.</p>
+  <header>
+    <div class="container">
+      <h1>Paramanu.ai</h1>
+      <p class="tagline">Atomic Intelligence for Pharma</p>
+      <a href="#contact" class="cta">Join the Waitlist</a>
+    </div>
+  </header>
 
-  <h3>📬 Contact Us</h3>
-  <form action="https://formspree.io/f/yourFormID" method="POST">
-    <input type="email" name="email" placeholder="Your email" required />
-    <textarea name="message" placeholder="Your message" required></textarea>
-    <button type="submit">Send</button>
-  </form>
+  <section class="about">
+    <div class="container">
+      <h2>About</h2>
+      <p>Paramanu is building AI-native platforms that help pharma teams think, act, and scale smarter — from field force to filings.</p>
+    </div>
+  </section>
 
-  <p><a href="https://www.linkedin.com/in/your-linkedin" target="_blank">🔗 Connect on LinkedIn</a></p>
+  <section class="product">
+    <div class="container">
+      <h2>InField AI</h2>
+      <p>Your copilot for the pharma field force. Personalized insights, intelligent targeting, and CRM-integrated planning — built for real-world pharma execution.</p>
+    </div>
+  </section>
+
+  <section class="why-now">
+    <div class="container">
+      <h2>Why Now</h2>
+      <ul>
+        <li>Field reps are pharma’s most underutilized asset</li>
+        <li>LLMs enable memory, context, and nudges</li>
+        <li>Shift from reactive dashboards to proactive intelligence</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Join the Waitlist</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Tell us what you're excited about" rows="4"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Paramanu.ai. Built with purpose.</p>
+    </div>
+  </footer>
 </body>
 </html>
