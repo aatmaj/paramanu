@@ -6,308 +6,730 @@
     <title>Parmanu.ai — InField AI: AI-Powered Field Force Intelligence for Pharma</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom styles for Inter font and subtle animation */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #1a202c; /* Dark grey for text */
-            background-color: #f8fafc; /* Light grey background */
+        /* Custom styles */
+        .gradient-text {
+            background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        /* Animation for the AI assistant visual */
-        @keyframes pulse-fade {
-            0% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.7; transform: scale(1); }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
         }
-
-        .ai-visual-animation {
-            animation: pulse-fade 2s infinite ease-in-out;
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-
-        /* Custom button styles for a more distinct look */
-        .btn-primary {
-            @apply bg-indigo-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-800 transition duration-300 ease-in-out transform hover:-translate-y-1;
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
         }
-
-        .btn-secondary {
-            @apply bg-white text-indigo-700 border border-indigo-700 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-50 transition duration-300 ease-in-out transform hover:-translate-y-1;
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
         }
-
-        /* Section padding - Increased for more generous spacing */
-        section {
-            @apply py-20 px-4 sm:px-6 lg:px-8;
+        
+        .blob {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+            animation: float 15s ease-in-out infinite;
         }
-
-        /* Hero section background gradient overlay for more depth */
-        .hero-gradient-overlay::before {
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: -100px;
+            left: -100px;
+        }
+        
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(180deg, #7c3aed 0%, #9333ea 100%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 2s;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        .stat-item {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
             content: '';
             position: absolute;
-            top: 0;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 50%);
-            z-index: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
         }
     </style>
 </head>
-<body>
-
-    <!-- Hero Section -->
-    <header class="bg-gradient-to-br from-indigo-700 to-purple-800 text-white py-20 sm:py-24 lg:py-32 relative overflow-hidden hero-gradient-overlay">
-        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
-            <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-                    AI-Powered Field Force Intelligence for Pharma — Meet InField AI
-                </h1>
-                <p class="text-lg sm:text-xl mb-10 opacity-90 max-w-2xl mx-auto lg:mx-0">
-                    Parmanu.ai’s InField AI transforms your field reps into intelligent agents, delivering the right message to the right doctor, every time.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#contact" class="btn-primary">Book a Demo</a>
-                    <a href="#contact" class="btn-secondary">Join Our Pilot Program</a>
-                </div>
-            </div>
-            <div class="lg:w-1/2 flex justify-center lg:justify-end relative">
-                <!-- Visual: Mockup or animation showing a rep using an AI-driven mobile assistant -->
-                <div class="relative w-full max-w-md lg:max-w-xl">
-                    <img src="https://placehold.co/600x400/6a0dad/ffffff?text=AI-Driven+Mobile+Assistant"
-                         alt="Mockup of a rep using an AI-driven mobile assistant with insights"
-                         class="rounded-2xl shadow-2xl w-full h-auto transform rotate-3 scale-105">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div class="ai-visual-animation bg-white bg-opacity-20 rounded-full w-3/4 h-3/4 flex items-center justify-center">
-                            <i class="fas fa-brain text-white text-6xl opacity-75"></i>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+    <!-- Header with Navigation -->
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-16 md:h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold text-primary-700">Parmanu.ai</span>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex space-x-8">
+                            <a href="#features" class="nav-link text-gray-700 hover:text-primary-600 font-medium">Features</a>
+                            <a href="#solution" class="nav-link text-gray-700 hover:text-primary-600 font-medium">Solution</a>
+                            <a href="#outcomes" class="nav-link text-gray-700 hover:text-primary-600 font-medium">Results</a>
+                            <a href="#contact" class="nav-link text-gray-700 hover:text-primary-600 font-medium">Contact</a>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="hidden md:block">
+                    <a href="#contact" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 shadow-sm transition duration-150 ease-in-out">
+                        Request Demo
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
         </div>
-        <!-- Background decorative elements -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-10">
-            <svg class="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none" fill="currentColor">
-                <path d="M0,160L48,176C96,192,192,224,288,208C384,192,480,128,576,128C672,128,768,192,864,208C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-            </svg>
+        <!-- Mobile menu -->
+        <div class="mobile-menu md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Features</a>
+                <a href="#solution" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Solution</a>
+                <a href="#outcomes" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Results</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Contact</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary-600 hover:bg-primary-700">Request Demo</a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Problem Section -->
-        <section id="problem" class="bg-white">
-            <div class="container mx-auto text-center max-w-4xl">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-indigo-800">Pharma’s Most Expensive Customer Channel is Blind</h2>
-                <p class="text-lg text-gray-700 mb-10">
-                    Field force effectiveness is critical, but traditional methods leave your reps flying blind.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-                        <i class="fas fa-unlink text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Disconnected Reps</h3>
-                        <p class="text-gray-600">Field reps are disconnected from enterprise intelligence.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-                        <i class="fas fa-database text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Outdated CRM Data</h3>
-                        <p class="text-gray-600">CRM data is outdated or incomplete, leading to poor decisions.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-                        <i class="fas fa-chart-line text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Backward SFE Tools</h3>
-                        <p class="text-gray-600">SFE tools are backward-looking, not predictive of future success.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-                        <i class="fas fa-question-circle text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Lack of Guidance</h3>
-                        <p class="text-gray-600">Reps lack contextual guidance on what to say or do next.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solution Section -->
-        <section id="solution" class="bg-indigo-50">
-            <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between max-w-5xl">
-                <div class="lg:w-1/2 lg:pr-12 mb-12 lg:mb-0 text-center lg:text-left">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-indigo-800">
-                        InField AI — Your Sales Rep’s Copilot, Powered by Real-Time Intelligence
-                    </h2>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        InField AI integrates data across CRM, HCP history, Rx trends, and enterprise signals to power a proactive, memory-rich AI assistant that guides reps on:
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                        AI-Powered Field Force Intelligence for Pharma
+                    </h1>
+                    <p class="text-xl sm:text-2xl opacity-90 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Transform your field reps into intelligent agents that deliver the right message to the right doctor, every time.
                     </p>
-                    <ul class="mt-8 space-y-4 text-lg text-gray-700 text-left mx-auto lg:mx-0 max-w-md">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-xl"></i>
-                            <span>Which doctor to meet next: Optimize routes and priorities.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-xl"></i>
-                            <span>What message to deliver: Tailor conversations for maximum impact.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-xl"></i>
-                            <span>How to tailor the conversation based on past interactions.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-xl"></i>
-                            <span>How to sync insights back into CRM seamlessly: Ensure your data is always current.</span>
-                        </li>
-                    </ul>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 shadow-lg transform transition hover:-translate-y-1 duration-300">
+                            Book a Demo
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 shadow-lg transform transition hover:-translate-y-1 duration-300">
+                            Join Pilot Program
+                        </a>
+                    </div>
+                    <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <div class="flex items-center text-sm">
+                            <svg class="h-5 w-5 text-white mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Veeva & Salesforce Integrated</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="h-5 w-5 text-white mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>HIPAA & GDPR Compliant</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="lg:w-1/2 flex justify-center">
-                    <img src="https://placehold.co/600x450/4a0e91/ffffff?text=AI+Copilot+Interface"
-                         alt="AI Copilot Interface on a tablet"
-                         class="rounded-xl shadow-xl w-full max-w-md lg:max-w-none transform -rotate-3 hover:rotate-0 transition duration-500 ease-in-out">
-                </div>
-            </div>
-        </section>
-
-        <!-- Key Features Section -->
-        <section id="features" class="bg-white">
-            <div class="container mx-auto text-center max-w-5xl">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-indigo-800">Key Features</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-comments text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Rep Copilot Interface</h3>
-                        <p class="text-gray-600">Chat-style assistant with smart suggestions, putting intelligence at your reps' fingertips.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-route text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Context-Aware Planning</h3>
-                        <p class="text-gray-600">Personalized visit plans & goals, optimizing every interaction.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-file-alt text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Smart Call Recap</h3>
-                        <p class="text-gray-600">Auto-summarized and structured field input, saving reps time and improving data quality.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-envelope-open-text text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">AI-Suggested Messaging</h3>
-                        <p class="text-gray-600">Message variants based on doctor preferences, ensuring relevant and impactful communication.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-sync-alt text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Field Reality Sync</h3>
-                        <p class="text-gray-600">Two-way CRM updates that reflect on-ground truth, keeping your systems aligned with reality.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300">
-                        <i class="fas fa-shield-alt text-indigo-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Privacy-Safe Data Memory</h3>
-                        <p class="text-gray-600">Secure, compliant, and role-based data access, protecting sensitive information.</p>
+                <div class="lg:w-1/2 flex justify-center lg:justify-end relative">
+                    <div class="relative w-full max-w-md lg:max-w-xl transform transition hover:scale-105 duration-500">
+                        <img src="https://placehold.co/600x400/4f46e5/ffffff?text=AI+Field+Assistant" alt="InField AI Mobile Interface" class="rounded-xl shadow-2xl w-full h-auto">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="bg-primary-100 p-3 rounded-full mr-3">
+                                    <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">AI Suggestion</p>
+                                    <p class="text-sm font-medium">"Dr. Smith prefers case studies"</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="scroll-indicator">
+            <svg class="h-8 w-8 text-white animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
 
-        <!-- Outcomes Section -->
-        <section id="outcomes" class="bg-indigo-700 text-white">
-            <div class="container mx-auto text-center max-w-4xl">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12">Proven Impact in Early Pilots</h2>
-                <p class="text-lg opacity-90 mb-10">See the tangible results InField AI delivers.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="p-6 rounded-xl bg-white bg-opacity-10 shadow-md">
-                        <p class="text-5xl font-extrabold mb-2 text-indigo-200">+25%</p>
-                        <p class="text-lg">Increase in productive HCP interactions</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white bg-opacity-10 shadow-md">
-                        <p class="text-5xl font-extrabold mb-2 text-indigo-200">3x</p>
-                        <p class="text-lg">Faster rep planning</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white bg-opacity-10 shadow-md">
-                        <p class="text-5xl font-extrabold mb-2 text-indigo-200">80%</p>
-                        <p class="text-lg">Reduction in manual CRM entry</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white bg-opacity-10 shadow-md">
-                        <p class="text-5xl font-extrabold mb-2 text-indigo-200">Stronger</p>
-                        <p class="text-lg">Alignment between marketing & field force</p>
-                    </div>
+    <!-- Logo Cloud Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wider mb-8">
+                Trusted by leading pharmaceutical companies
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-center">
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=Pharma+Co" alt="Pharma Company Logo">
+                </div>
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=Generics+Inc" alt="Generics Inc Logo">
+                </div>
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=BioPharm" alt="BioPharm Logo">
+                </div>
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=MediCare" alt="MediCare Logo">
+                </div>
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=TheraSolutions" alt="TheraSolutions Logo">
+                </div>
+                <div class="flex justify-center">
+                    <img class="h-12 opacity-60 hover:opacity-100 transition duration-300" src="https://placehold.co/160x64/d1d5db/4b5563?text=VitaPharm" alt="VitaPharm Logo">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Built for Pharma Section -->
-        <section id="built-for-pharma" class="bg-white">
-            <div class="container mx-auto text-center max-w-4xl">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-indigo-800">Built for Pharma</h2>
-                <p class="text-xl text-gray-700 mb-10 font-semibold">We speak Pharma. Our AI is trained on your universe.</p>
-                <p class="text-lg text-gray-600 mb-12">
-                    InField AI is purpose-built for the unique needs of the pharmaceutical industry, ensuring seamless integration and compliance.
+    <!-- Problem Section -->
+    <section id="problem" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                    Pharma's Most Expensive Channel Runs Blind
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Traditional field force approaches lack real-time intelligence, leading to wasted opportunities and inefficient resource allocation.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    <div class="p-6 rounded-xl bg-gray-50 shadow-sm border border-gray-100 flex flex-col items-center justify-center h-full">
-                        <i class="fas fa-handshake text-indigo-600 text-4xl mb-4"></i>
-                        <p class="text-lg font-medium text-gray-700">Works with Veeva, Salesforce Health Cloud, and custom CRMs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-2">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-unlink text-primary-600 text-2xl"></i>
                     </div>
-                    <div class="p-6 rounded-xl bg-gray-50 shadow-sm border border-gray-100 flex flex-col items-center justify-center h-full">
-                        <i class="fas fa-shield-alt text-indigo-600 text-4xl mb-4"></i>
-                        <p class="text-lg font-medium text-gray-700">Compliant with pharma data governance norms</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-gray-50 shadow-sm border border-gray-100 flex flex-col items-center justify-center h-full">
-                        <i class="fas fa-industry text-indigo-600 text-4xl mb-4"></i>
-                        <p class="text-lg font-medium text-gray-700">Designed for both branded and generic organizations</p>
-                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Disconnected Reps</h3>
+                    <p class="text-gray-600">Field reps lack access to enterprise intelligence when they need it most - during HCP interactions.</p>
                 </div>
-                <!-- Testimonials Section (Optional) -->
-                <div id="testimonials" class="mt-20">
-                    <h3 class="text-2xl sm:text-3xl font-bold mb-8 text-indigo-800">What Our Early Users Say</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-md text-left">
-                            <p class="text-gray-700 italic mb-4">"InField AI has revolutionized how our reps interact with doctors. The real-time insights are a game-changer!"</p>
-                            <p class="font-semibold text-indigo-700">- Dr. Anya Sharma, Sales Head, Leading Pharma Co.</p>
-                        </div>
-                        <div class="bg-indigo-50 p-6 rounded-xl shadow-md text-left">
-                            <p class="text-gray-700 italic mb-4">"The planning efficiency alone has saved us countless hours. This is truly purpose-built AI for pharma."</p>
-                            <p class="font-semibold text-indigo-700">- Mark Johnson, SFE Lead, Global Generics</p>
-                        </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-2">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-primary-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Outdated CRM Data</h3>
+                    <p class="text-gray-600">Manual entry leads to incomplete or decaying data that misguides decisions and wastes opportunities.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-2">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Backward SFE Tools</h3>
+                    <p class="text-gray-600">Traditional analytics can't predict next-best-actions in real time, leaving reps unprepared.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-2">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-question-circle text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Lack of Guidance</h3>
+                    <p class="text-gray-600">Reps lack contextual guidance on what to say or do next, missing key engagement opportunities.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Footer Section -->
-        <section id="contact" class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white text-center py-20">
-            <div class="container mx-auto max-w-3xl">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-10 leading-tight">Ready to make your reps intelligent, not just digital?</h2>
-                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#contact" class="btn-secondary !bg-white !text-indigo-700 hover:!bg-indigo-50">Book a Demo</a>
-                    <a href="#contact" class="btn-secondary !bg-white !text-indigo-700 hover:!bg-indigo-50">Join Early Access</a>
-                    <a href="mailto:hello@parmanu.ai" class="btn-secondary !bg-white !text-indigo-700 hover:!bg-indigo-50">Contact Sales</a>
+    <!-- Solution Section -->
+    <section id="solution" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
+                        <span class="gradient-text">InField AI</span> — Your Sales Rep's Intelligent Copilot
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        InField AI integrates data across CRM, HCP history, Rx trends, and enterprise signals to power a proactive, memory-rich AI assistant that guides reps in real-time.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Optimized Visit Planning</h3>
+                                <p class="mt-1 text-gray-600">AI determines which doctors to meet next based on real-time prescription data and engagement potential.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Personalized Messaging</h3>
+                                <p class="mt-1 text-gray-600">Tailored conversation guides based on each doctor's preferences and past interactions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Seamless CRM Sync</h3>
+                                <p class="mt-1 text-gray-600">Automatically captures insights and updates CRM, eliminating manual data entry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x450/4f46e5/ffffff?text=AI+Copilot+Interface" alt="InField AI Dashboard" class="rounded-xl shadow-xl w-full">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg w-64">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-bolt text-primary-600"></i>
+                                </div>
+                                <h4 class="text-sm font-semibold">Real-time Insights</h4>
+                            </div>
+                            <p class="text-xs text-gray-600">"Dr. Johnson's Rx volume increased 15% last month - suggest discussing adherence support"</p>
+                        </div>
+                        <div class="absolute -top-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-64">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-route text-primary-600"></i>
+                                </div>
+                                <h4 class="text-sm font-semibold">Optimized Route</h4>
+                            </div>
+                            <p class="text-xs text-gray-600">"Next visit: Dr. Lee (0.8mi away) - high potential based on recent formulary changes"</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                    Powerful Features for Pharma Excellence
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Everything your field force needs to be more productive, informed, and effective.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Rep Copilot Interface</h3>
+                    <p class="text-gray-600">Chat-style assistant with smart suggestions that adapt to each HCP interaction in real-time.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-route text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Context-Aware Planning</h3>
+                    <p class="text-gray-600">Personalized visit plans & goals that optimize routes and priorities based on real-time data.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-file-alt text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Smart Call Recap</h3>
+                    <p class="text-gray-600">Auto-summarized and structured field input that saves reps time while improving CRM data quality.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-comment-medical text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI-Suggested Messaging</h3>
+                    <p class="text-gray-600">Message variants based on doctor preferences, ensuring relevant and impactful communication.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Field Reality Sync</h3>
+                    <p class="text-gray-600">Two-way CRM updates that reflect actual on-ground truth, keeping your systems perfectly aligned.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Privacy-Safe Data</h3>
+                    <p class="text-gray-600">Secure, compliant architecture with role-based access that protects sensitive information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="py-20 bg-primary-700 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">
+                    Proven Impact in Early Pilots
+                </h2>
+                <p class="text-xl opacity-90">
+                    Real results from pharmaceutical companies using InField AI to transform their field force effectiveness.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="stat-item bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm text-center">
+                    <p class="text-5xl font-extrabold mb-2 text-primary-200">+25%</p>
+                    <p class="text-lg">Increase in productive HCP interactions</p>
+                </div>
+                
+                <div class="stat-item bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm text-center">
+                    <p class="text-5xl font-extrabold mb-2 text-primary-200">3x</p>
+                    <p class="text-lg">Faster daily rep planning</p>
+                </div>
+                
+                <div class="stat-item bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm text-center">
+                    <p class="text-5xl font-extrabold mb-2 text-primary-200">80%</p>
+                    <p class="text-lg">Reduction in manual CRM entry</p>
+                </div>
+                
+                <div class="stat-item bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm text-center">
+                    <p class="text-5xl font-extrabold mb-2 text-primary-200">2x</p>
+                    <p class="text-lg">Stronger marketing-field alignment</p>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mt-20 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="testimonial-card bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full" src="https://placehold.co/48x48/4f46e5/ffffff?text=AS" alt="Dr. Anya Sharma">
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold">Dr. Anya Sharma</h4>
+                                <p class="text-primary-200 text-sm">Sales Head, Leading Pharma Co.</p>
+                            </div>
+                        </div>
+                        <blockquote class="italic text-lg">
+                            "InField AI has revolutionized how our reps interact with doctors. The real-time insights are a game-changer, helping us tailor our messaging perfectly to each physician's preferences and needs."
+                        </blockquote>
+                    </div>
+                    
+                    <div class="testimonial-card bg-white bg-opacity-10 p-8 rounded-xl shadow-md backdrop-blur-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full" src="https://placehold.co/48x48/4f46e5/ffffff?text=MJ" alt="Mark Johnson">
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold">Mark Johnson</h4>
+                                <p class="text-primary-200 text-sm">SFE Lead, Global Generics</p>
+                            </div>
+                        </div>
+                        <blockquote class="italic text-lg">
+                            "The planning efficiency alone has saved us countless hours. Our reps are now spending more time with high-value HCPs and less time on admin. This is truly purpose-built AI for pharma."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built for Pharma Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                    Built for Pharma's Unique Needs
+                </h2>
+                <p class="text-xl text-gray-600">
+                    We speak Pharma. Our AI is trained on your universe.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Seamless CRM Integration</h3>
+                    <p class="text-gray-600">Works with Veeva, Salesforce Health Cloud, and custom CRMs to fit your existing tech stack.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Compliance First</h3>
+                    <p class="text-gray-600">Designed for pharma data governance norms including HIPAA, GDPR, and 21 CFR Part 11.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                    <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-pills text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Branded & Generic</h3>
+                    <p class="text-gray-600">Tailored solutions for both branded and generic pharmaceutical business models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">
+                    Ready to make your reps intelligent, not just digital?
+                </h2>
+                <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                    See how InField AI can transform your field force effectiveness with a personalized demo.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 shadow-lg transform transition hover:-translate-y-1 duration-300">
+                        Book a Demo
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-white text-base font-medium rounded-md text-white bg-transparent hover:bg-white hover:bg-opacity-10 shadow-lg transform transition hover:-translate-y-1 duration-300">
+                        Join Early Access
+                    </a>
+                </div>
+                <p class="mt-8 text-sm opacity-80">
+                    Or contact us directly at <a href="mailto:contact@parmanu.ai" class="underline hover:opacity-90">contact@parmanu.ai</a>
+                </p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-            <div class="mb-6 md:mb-0">
-                <h3 class="text-2xl font-bold text-white mb-2">Parmanu.ai</h3>
-                <p class="text-sm">Purpose-built AI for Pharma's Deep Problems.</p>
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-white mb-4">Parmanu.ai</h3>
+                    <p class="mb-6">Purpose-built AI for Pharma's Deep Problems.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="hover:text-white transition duration-300">Features</a></li>
+                        <li><a href="#solution" class="hover:text-white transition duration-300">Solutions</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition duration-300">Pricing</a></li>
+                        <li><a href="#demo" class="hover:text-white transition duration-300">Request Demo</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-            <nav class="mb-6 md:mb-0">
-                <ul class="flex flex-wrap justify-center md:justify-start space-x-6">
-                    <li><a href="#" class="hover:text-white transition duration-300">About</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Careers</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Contact</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Privacy Policy</a></li>
-                </ul>
-            </nav>
-            <div class="flex flex-col items-center md:items-end">
-                <a href="mailto:hello@parmanu.ai" class="text-lg hover:text-white transition duration-300 mb-4">hello@parmanu.ai</a>
-                <div class="flex space-x-4">
-                    <a href="https://linkedin.com/company/parmanu-ai" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <!-- Add other social media icons if needed -->
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">&copy; 2023 Parmanu.ai. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-sm hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-white transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-sm hover:text-white transition duration-300">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                    }
+                }
+            });
+        });
+        
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .stat-item, .testimonial-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
 </body>
 </html>
