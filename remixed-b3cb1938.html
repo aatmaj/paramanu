@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramanu.ai - Atomic Intelligence</title>
+    <meta name="description" content="Advanced AI solutions at the atomic level. Precision, efficiency, and intelligence redefined.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-icon::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            z-index: 0;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float-particle 10s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 32px;
+            color: #ffffff;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: #a0a0a0;
+            margin-bottom: 48px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .cta-button.primary {
+            background: #ffffff;
+            color: #0a0a0a;
+        }
+
+        .cta-button.primary:hover {
+            background: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        /* Section Spacing */
+        .section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 48px;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .problem-statement h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 48px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .problem-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .problem-point {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .problem-point:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .problem-text {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .solution-intro {
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-top: 48px;
+        }
+
+        .solution-intro p {
+            color: #ffffff;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-content {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 80px;
+        }
+
+        .feature-category {
+            text-align: left;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-bullet {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin-right: 16px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Target Section */
+        .target-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .target-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .target-description p {
+            color: #a0a0a0;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .target-points {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 48px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .target-point {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .target-point:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .target-bullet {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .target-point span {
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .target-cta {
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .target-cta p {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .demo-visual {
+            height: 400px;
+            background: linear-gradient(45deg, #111111, #1a1a1a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 48px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.02) 2px,
+                rgba(255, 255, 255, 0.02) 4px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+
+        .demo-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .ai-brain {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: brainPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes brainPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 0 40px rgba(79, 70, 229, 0.6); }
+        }
+
+        .ai-brain::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            border-radius: 50%;
+            animation: innerPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes innerPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        .data-streams {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .data-stream {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, #4f46e5, transparent);
+            animation: streamFlow 3s ease-in-out infinite;
+        }
+
+        .data-stream:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .data-stream:nth-child(2) { left: 40%; animation-delay: 0.5s; }
+        .data-stream:nth-child(3) { left: 60%; animation-delay: 1s; }
+        .data-stream:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+
+        @keyframes streamFlow {
+            0% { transform: translateY(100px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        .demo-placeholder {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .demo-title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .demo-subtitle {
+            color: #666666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-intro {
+            margin-bottom: 48px;
+        }
+
+        .contact-intro p {
+            color: #a0a0a0;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .contact-item a:hover {
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom {
+            color: #666666;
+            font-size: 14px;
+        }
+
+        /* Enhanced animations for sections */
+        .section-title {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-category {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .feature-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-category:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .problem-point {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .problem-point.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .problem-point:nth-child(2) { transition-delay: 0.1s; }
+        .problem-point:nth-child(3) { transition-delay: 0.2s; }
+        .problem-point:nth-child(4) { transition-delay: 0.3s; }
+
+        .target-point {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .target-point.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .target-point:nth-child(2) { transition-delay: 0.1s; }
+        .target-point:nth-child(3) { transition-delay: 0.2s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+        /* Subtle animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Network visualization */
+        .network-visualization {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+
+        .network-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #4f46e5;
+            border-radius: 50%;
+            animation: nodeGlow 3s ease-in-out infinite;
+        }
+
+        .network-node:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .network-node:nth-child(2) { top: 30%; left: 80%; animation-delay: 0.5s; }
+        .network-node:nth-child(3) { top: 70%; left: 30%; animation-delay: 1s; }
+        .network-node:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+
+        @keyframes nodeGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(79, 70, 229, 0.5); }
+            50% { transform: scale(1.5); box-shadow: 0 0 20px rgba(79, 70, 229, 0.8); }
+        }
+
+        .network-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #4f46e5, transparent);
+            animation: lineFlow 4s ease-in-out infinite;
+        }
+
+        .network-line:nth-child(5) {
+            top: 25%;
+            left: 20%;
+            width: 60%;
+            transform: rotate(15deg);
+            animation-delay: 0s;
+        }
+
+        .network-line:nth-child(6) {
+            top: 60%;
+            left: 30%;
+            width: 40%;
+            transform: rotate(-20deg);
+            animation-delay: 1s;
+        }
+
+        @keyframes lineFlow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                Paramanu.ai
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#features">Solutions</a></li>
+                <li><a href="#target">Who We Help</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="floating-particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="floating-particle" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="floating-particle" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="floating-particle" style="left: 40%; animation-delay: 6s;"></div>
+            <div class="floating-particle" style="left: 50%; animation-delay: 8s;"></div>
+            <div class="floating-particle" style="left: 60%; animation-delay: 1s;"></div>
+            <div class="floating-particle" style="left: 70%; animation-delay: 3s;"></div>
+            <div class="floating-particle" style="left: 80%; animation-delay: 5s;"></div>
+            <div class="floating-particle" style="left: 90%; animation-delay: 7s;"></div>
+        </div>
+        <div class="hero-content">
+            <h1>From Static Field Plans to Intelligent Execution</h1>
+            <p class="hero-subtitle">InField AI helps pharma commercial teams adapt faster, boost rep impact, and turn Rx, HCP, and territory signals into intelligent, real-time actions on the ground.</p>
+            <div class="cta-group">
+                <a href="#contact" class="cta-button primary">Request a Pilot</a>
+                <a href="#contact" class="cta-button secondary">Book Discovery Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Built InField AI Section -->
+    <section class="section problem-section" id="problem">
+        <div class="problem-content">
+            <h2 class="section-title">Why We Built InField AI</h2>
+            <div class="problem-statement">
+                <h3>Pharma's Execution Bottleneck Is No Longer Insight — It's Adaptation.</h3>
+                <div class="problem-points">
+                    <div class="problem-point">
+                        <div class="problem-text">Most pharma field plans break down within weeks.</div>
+                    </div>
+                    <div class="problem-point">
+                        <div class="problem-text">Reps lose touch with dynamic HCP needs.</div>
+                    </div>
+                    <div class="problem-point">
+                        <div class="problem-text">SFE teams lack real-time visibility.</div>
+                    </div>
+                    <div class="problem-point">
+                        <div class="problem-text">Territory decisions lag behind what's happening on the ground.</div>
+                    </div>
+                </div>
+                <div class="solution-intro">
+                    <p><strong>InField AI changes that.</strong> It bridges the gap between strategy and execution using real-time data, signals, and AI reasoning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What InField AI Does Section -->
+    <section class="section features-section" id="features">
+        <div class="features-content">
+            <h2 class="section-title">What InField AI Does</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-category">
+                <h3 class="category-title">For Reps:</h3>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">Instant AI-powered briefing for every HCP visit</div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">Suggested actions based on market signals, plan deviation, or rep activity gaps</div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">Alerts for Rx shifts, digital events, or missed engagement triggers</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-category">
+                <h3 class="category-title">For SFE & Commercial Leads:</h3>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">Plan vs Execution dashboards with deviation insights</div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">Signal-driven territory realignment suggestions</div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div class="feature-text">HCP-Rep-Plan graph for targeting and activity orchestration</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Should Talk to Us Section -->
+    <section class="section target-section" id="target">
+        <div class="target-content">
+            <h2 class="section-title">Who Should Talk to Us</h2>
+            <div class="target-description">
+                <p>If you're a <strong>CIO, Commercial Excellence Lead, or SFE Manager</strong> in a pharmaceutical company, and you're exploring:</p>
+                <div class="target-points">
+                    <div class="target-point">
+                        <div class="target-bullet"></div>
+                        <span>AI for field force optimization</span>
+                    </div>
+                    <div class="target-point">
+                        <div class="target-bullet"></div>
+                        <span>Territory execution intelligence</span>
+                    </div>
+                    <div class="target-point">
+                        <div class="target-bullet"></div>
+                        <span>Dynamic planning and rep enablement</span>
+                    </div>
+                </div>
+                <div class="target-cta">
+                    <p><strong>→ Let's talk. We're onboarding 2 early partners now.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- See InField AI in Action Section -->
+    <section class="section demo-section" id="demo">
+        <div class="demo-content">
+            <h2 class="section-title">See InField AI in Action</h2>
+            <p style="color: #a0a0a0; font-size: 1.125rem; line-height: 1.7; margin-bottom: 32px;">Want to see how a rep's day transforms with AI? We're building a visual walkthrough. Until then, request a short call or live demo.</p>
+            
+            <div class="demo-visual fade-in">
+                <div class="demo-animation">
+                    <div class="ai-brain"></div>
+                    <div class="data-streams">
+                        <div class="data-stream"></div>
+                        <div class="data-stream"></div>
+                        <div class="data-stream"></div>
+                        <div class="data-stream"></div>
+                    </div>
+                </div>
+                <div class="network-visualization">
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-line"></div>
+                    <div class="network-line"></div>
+                </div>
+                <div class="demo-placeholder">
+                    <div class="demo-title">AI-Powered Field Intelligence</div>
+                    <div class="demo-subtitle">Real-time adaptation in action</div>
+                </div>
+            </div>
+            
+            <div class="cta-group">
+                <a href="#contact" class="cta-button primary">Request Pilot Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-intro">
+                <p>We're onboarding early pilot customers. Let's explore how InField AI can support your territory, therapy area, or commercial use case.</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📩</span>
+                    <a href="mailto:contact@paramanu.ai">contact@paramanu.ai</a>
+                </div>
+            </div>
+            
+            <div class="cta-group">
+                <a href="mailto:contact@paramanu.ai" class="cta-button primary">Get Started</a>
+                <a href="mailto:contact@paramanu.ai?subject=Demo Request" class="cta-button secondary">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Paramanu.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .section-title, .feature-category, .problem-point, .target-point').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate stats numbers
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = stat.textContent;
+                const isPercentage = target.includes('%');
+                const isMultiplier = target.includes('x');
+                const isTime = target.includes('/');
+                
+                if (isPercentage) {
+                    const num = parseFloat(target);
+                    animateNumber(stat, 0, num, 2000, '%');
+                } else if (isMultiplier) {
+                    const num = parseInt(target);
+                    animateNumber(stat, 0, num, 2000, 'x');
+                } else if (isTime) {
+                    stat.textContent = target;
+                } else {
+                    const num = parseInt(target.replace('+', ''));
+                    animateNumber(stat, 0, num, 2000, '+');
+                }
+            });
+        }
+
+        function animateNumber(element, start, end, duration, suffix = '') {
+            const startTime = performance.now();
+            const range = end - start;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = start + (range * easeProgress);
+                
+                if (suffix === '%') {
+                    element.textContent = current.toFixed(1) + suffix;
+                } else if (suffix === 'x') {
+                    element.textContent = Math.floor(current) + suffix;
+                } else if (suffix === '+') {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Create more dynamic floating particles
+        function createFloatingParticles() {
+            const heroBackground = document.querySelector('.hero-background');
+            if (!heroBackground) return;
+
+            // Create additional particles dynamically
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                
+                // Add some variety to particle sizes
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                heroBackground.appendChild(particle);
+            }
+        }
+
+        // Add pulsing effect to feature items
+        function addFeatureAnimations() {
+            const featureItems = document.querySelectorAll('.feature-item');
+            featureItems.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateX(8px)';
+                    item.style.transition = 'all 0.3s ease';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateX(0)';
+                });
+            });
+        }
+
+        // Initialize all animations
+        function initializeAnimations() {
+            createFloatingParticles();
+            addFeatureAnimations();
+        }
+
+        // Call initialization when page loads
+        document.addEventListener('DOMContentLoaded', initializeAnimations);
+    </script>
+</body>
+</html>
