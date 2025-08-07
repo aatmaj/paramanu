@@ -19,6 +19,7 @@
             --accent-secondary: #8B5CF6;
             --border-color: rgba(255, 255, 255, 0.1);
             --glow-primary: rgba(79, 70, 229, 0.7);
+            --glow-secondary: rgba(139, 92, 246, 0.7);
         }
 
         * {
@@ -35,7 +36,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -124,7 +124,6 @@
             color: var(--text-primary);
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -233,7 +232,6 @@
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
         }
 
-        /* General Section Styling */
         .section {
             padding: 100px 24px;
             max-width: 1200px;
@@ -261,7 +259,6 @@
             font-family: 'IBM Plex Sans', sans-serif;
         }
 
-        /* Problem Section */
         .problem-section {
             background: #0a0a0a;
             border-top: 1px solid var(--border-color);
@@ -310,7 +307,6 @@
             margin: 0;
         }
         
-        /* Features Section */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -354,14 +350,72 @@
         }
         .feature-text { color: var(--text-secondary); }
 
-        /* --- Foundry/Palantir Style Visualization --- */
+        /* --- FOUNDRY VIZ ENHANCEMENTS --- */
+        .demo-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 64px;
+        }
+        
+        .demo-text-box {
+            padding: 32px;
+            background: #111319;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            align-self: start;
+        }
+        .demo-text-box h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+        }
+        .demo-text-box ol {
+            list-style: none;
+            counter-reset: flow-counter;
+        }
+        .demo-text-box li {
+            position: relative;
+            margin-bottom: 24px;
+            padding-left: 36px;
+        }
+        .demo-text-box li::before {
+            content: counter(flow-counter);
+            counter-increment: flow-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .demo-text-box h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .demo-text-box p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
         #foundry-visualization-container {
-            height: 500px;
-            margin-top: 48px;
+            height: 600px;
             background: var(--bg-color);
             border-radius: 8px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .foundry-svg {
@@ -371,41 +425,60 @@
 
         .hex-background {
             fill: url(#hex-pattern);
-            opacity: 0.1;
+            opacity: 0.05;
         }
 
         .flow-node {
             stroke-width: 1.5px;
             stroke: var(--accent-primary);
             fill: #111319;
-            filter: drop-shadow(0 0 8px var(--glow-primary));
+            filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.7));
             transition: all 0.3s ease;
+            animation: node-breathing 5s ease-in-out infinite alternate;
         }
         
+        .flow-node.highlight {
+            stroke: var(--accent-secondary);
+            fill: linear-gradient(135deg, #111319, #1b0d2d);
+            filter: drop-shadow(0 0 16px var(--glow-secondary));
+        }
+
         .flow-node:hover {
             stroke: var(--accent-secondary);
-            filter: drop-shadow(0 0 12px var(--accent-secondary));
+            filter: drop-shadow(0 0 12px var(--glow-secondary));
         }
 
         .node-text {
             font-family: 'IBM Plex Sans', sans-serif;
             fill: var(--text-primary);
-            font-size: 14px;
+            font-size: 16px;
             text-anchor: middle;
+            font-weight: 500;
+            transition: fill 0.3s ease;
         }
         
         .node-subtext {
             font-family: 'IBM Plex Sans', sans-serif;
             fill: var(--text-secondary);
-            font-size: 11px;
+            font-size: 12px;
             text-anchor: middle;
+            transition: fill 0.3s ease;
+        }
+
+        .node-icon {
+            font-family: 'IBM Plex Sans', sans-serif;
+            fill: var(--accent-secondary);
+            font-size: 24px;
+            text-anchor: middle;
+            font-weight: 600;
+            transition: fill 0.3s ease;
         }
         
         .flow-path {
             fill: none;
             stroke: var(--accent-primary);
             stroke-width: 1px;
-            opacity: 0.3;
+            opacity: 0.4;
         }
         
         .flow-pulse {
@@ -420,6 +493,12 @@
             to {
                 stroke-dashoffset: -120;
             }
+        }
+
+        @keyframes node-breathing {
+            0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.7)); }
+            50% { transform: scale(1.02); filter: drop-shadow(0 0 12px rgba(79, 70, 229, 0.9)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.7)); }
         }
 
         /* Target Section */
@@ -505,6 +584,8 @@
             .nav-links { display: none; }
             .mobile-menu-button { display: block; }
             .features-grid { grid-template-columns: 1fr; }
+            .demo-content { grid-template-columns: 1fr; gap: 32px; }
+            .demo-text-box { margin-top: 32px; }
         }
     </style>
 </head>
@@ -602,73 +683,103 @@
                 <h2 class="section-title">How It Works: The Intelligence Core</h2>
                 <p class="section-subtitle">We connect disparate data sources into a unified knowledge graph, enabling our AI agents to reason, recommend, and alert with unparalleled context.</p>
             </div>
-            <div id="foundry-visualization-container" class="fade-in">
-                <svg class="foundry-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 500">
-                    <defs>
-                        <pattern id="hex-pattern" width="40" height="46.18" patternUnits="userSpaceOnUse">
-                            <path d="M20 0 l20 11.547 v23.094 l-20 11.547 l-20 -11.547 v-23.094 z" stroke="rgba(79, 70, 229, 0.5)" stroke-width="1" fill="none"></path>
-                        </pattern>
-                    </defs>
-                    
-                    <rect width="100%" height="100%" class="hex-background"></rect>
+            <div class="demo-content">
+                <div id="foundry-visualization-container" class="fade-in">
+                    <svg class="foundry-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 600">
+                        <defs>
+                            <pattern id="hex-pattern" width="40" height="46.18" patternUnits="userSpaceOnUse">
+                                <path d="M20 0 l20 11.547 v23.094 l-20 11.547 l-20 -11.547 v-23.094 z" stroke="rgba(79, 70, 229, 0.5)" stroke-width="1" fill="none"></path>
+                            </pattern>
+                            <linearGradient id="glow-gradient-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--accent-primary);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--accent-secondary);stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="shadow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="var(--accent-secondary)" flood-opacity="0.8"/>
+                            </filter>
+                        </defs>
+                        
+                        <rect width="100%" height="100%" class="hex-background"></rect>
 
-                    <!-- Data Sources -->
-                    <g transform="translate(150, 100)">
-                        <rect class="flow-node" x="-60" y="-25" width="120" height="50" rx="5"></rect>
-                        <text class="node-text" y="5">CRM Data</text>
-                    </g>
-                    <g transform="translate(150, 200)">
-                        <rect class="flow-node" x="-60" y="-25" width="120" height="50" rx="5"></rect>
-                        <text class="node-text" y="5">Sales Data</text>
-                    </g>
-                    <g transform="translate(150, 300)">
-                        <rect class="flow-node" x="-60" y="-25" width="120" height="50" rx="5"></rect>
-                        <text class="node-text" y="5">Market Data</text>
-                    </g>
-                     <g transform="translate(150, 400)">
-                        <rect class="flow-node" x="-80" y="-25" width="160" height="50" rx="5"></rect>
-                        <text class="node-text" y="5">Rep Behavioral Data</text>
-                    </g>
-                    
-                    <!-- Knowledge Graph -->
-                    <g transform="translate(500, 250)">
-                        <rect class="flow-node" x="-100" y="-50" width="200" height="100" rx="10"></rect>
-                        <text class="node-text" y="-5">Knowledge Graph</text>
-                        <text class="node-subtext" y="15">Unified Semantic Layer</text>
-                    </g>
+                        <g class="flow-step-1" transform="translate(150, 100)">
+                            <rect class="flow-node" x="-80" y="-30" width="160" height="60" rx="8"></rect>
+                            <text class="node-icon" y="-10">📊</text>
+                            <text class="node-text" y="15">CRM Data</text>
+                        </g>
+                        <g class="flow-step-1" transform="translate(150, 250)">
+                            <rect class="flow-node" x="-80" y="-30" width="160" height="60" rx="8"></rect>
+                            <text class="node-icon" y="-10">💰</text>
+                            <text class="node-text" y="15">Sales Data</text>
+                        </g>
+                        <g class="flow-step-1" transform="translate(150, 400)">
+                            <rect class="flow-node" x="-80" y="-30" width="160" height="60" rx="8"></rect>
+                            <text class="node-icon" y="-10">📡</text>
+                            <text class="node-text" y="15">Market Signals</text>
+                        </g>
+                        <g class="flow-step-1" transform="translate(150, 550)">
+                            <rect class="flow-node" x="-80" y="-30" width="160" height="60" rx="8"></rect>
+                            <text class="node-icon" y="-10">🏃‍♂️</text>
+                            <text class="node-text" y="15">Rep Activity</text>
+                        </g>
+                        
+                        <g class="flow-step-2" transform="translate(600, 300)">
+                            <rect class="flow-node highlight" x="-150" y="-100" width="300" height="200" rx="15"></rect>
+                            <text class="node-icon" y="-40" style="font-size: 40px;">🧠</text>
+                            <text class="node-text" y="10" style="font-size: 24px;">Knowledge Graph</text>
+                            <text class="node-subtext" y="40" style="font-size: 16px;">Unified Semantic Layer</text>
+                        </g>
 
-                    <!-- AI Agents -->
-                    <g transform="translate(850, 250)">
-                        <rect class="flow-node" x="-80" y="-40" width="160" height="80" rx="8"></rect>
-                        <text class="node-text" y="-5">AI Agents</text>
-                        <text class="node-subtext" y="15">Reasoning & Analysis</text>
-                    </g>
-                    
-                    <!-- Rep Interface -->
-                     <g transform="translate(1100, 250)">
-                        <circle class="flow-node" r="50"></circle>
-                        <text class="node-text" y="5">Rep Interface</text>
-                    </g>
+                        <g class="flow-step-3" transform="translate(900, 150)">
+                            <rect class="flow-node" x="-90" y="-40" width="180" height="80" rx="10"></rect>
+                            <text class="node-icon" y="-10">🤖</text>
+                            <text class="node-text" y="20">Rep AI Agent</text>
+                        </g>
+                        <g class="flow-step-3" transform="translate(900, 450)">
+                            <rect class="flow-node" x="-90" y="-40" width="180" height="80" rx="10"></rect>
+                            <text class="node-icon" y="-10">📈</text>
+                            <text class="node-text" y="20">SFE AI Agent</text>
+                        </g>
+                        
+                        <path class="flow-path" d="M 230 100 Q 400 100, 500 220"></path>
+                        <path class="flow-pulse" d="M 230 100 Q 400 100, 500 220"></path>
 
-                    <!-- Paths -->
-                    <path class="flow-path" d="M 210 100 C 350 100, 350 220, 400 220"></path>
-                    <path class="flow-pulse" d="M 210 100 C 350 100, 350 220, 400 220"></path>
+                        <path class="flow-path" d="M 230 250 H 450"></path>
+                        <path class="flow-pulse" d="M 230 250 H 450" style="animation-delay: -1s;"></path>
 
-                    <path class="flow-path" d="M 210 200 C 350 200, 350 240, 400 240"></path>
-                    <path class="flow-pulse" d="M 210 200 C 350 200, 350 240, 400 240" style="animation-delay: -1s;"></path>
+                        <path class="flow-path" d="M 230 400 Q 400 400, 500 380"></path>
+                        <path class="flow-pulse" d="M 230 400 Q 400 400, 500 380" style="animation-delay: -2s;"></path>
+                        
+                        <path class="flow-path" d="M 230 550 Q 400 550, 500 380"></path>
+                        <path class="flow-pulse" d="M 230 550 Q 400 550, 500 380" style="animation-delay: -3s;"></path>
+                        
+                        <path class="flow-path" d="M 750 300 C 800 300, 800 150, 810 150"></path>
+                        <path class="flow-pulse" d="M 750 300 C 800 300, 800 150, 810 150" style="animation-delay: -0.5s;"></path>
 
-                    <path class="flow-path" d="M 210 300 C 350 300, 350 260, 400 260"></path>
-                    <path class="flow-pulse" d="M 210 300 C 350 300, 350 260, 400 260" style="animation-delay: -2s;"></path>
-                    
-                    <path class="flow-path" d="M 230 400 C 350 400, 350 280, 400 280"></path>
-                    <path class="flow-pulse" d="M 230 400 C 350 400, 350 280, 400 280" style="animation-delay: -3s;"></path>
-                    
-                    <path class="flow-path" d="M 600 250 H 770"></path>
-                    <path class="flow-pulse" d="M 600 250 H 770" style="animation-delay: -0.5s;"></path>
-
-                    <path class="flow-path" d="M 930 250 H 1050"></path>
-                    <path class="flow-pulse" d="M 930 250 H 1050" style="animation-delay: -1.5s;"></path>
-                </svg>
+                        <path class="flow-path" d="M 750 300 C 800 300, 800 450, 810 450"></path>
+                        <path class="flow-pulse" d="M 750 300 C 800 300, 800 450, 810 450" style="animation-delay: -1.5s;"></path>
+                    </svg>
+                </div>
+                <div class="demo-text-box fade-in">
+                    <h3>The Intelligence Flow</h3>
+                    <ol>
+                        <li>
+                            <h4>Data Ingestion</h4>
+                            <p>We automatically pull and normalize data from your existing CRM, sales, and market systems, plus a stream of real-time signals.</p>
+                        </li>
+                        <li>
+                            <h4>Unified Knowledge Graph</h4>
+                            <p>This is our core. All data is mapped into a single, intelligent graph that understands the complex relationships between HCPs, territories, reps, and market events.</p>
+                        </li>
+                        <li>
+                            <h4>AI Reasoning & Analysis</h4>
+                            <p>Our purpose-built AI agents "reason" over the knowledge graph to identify patterns, predict outcomes, and flag opportunities or risks.</p>
+                        </li>
+                        <li>
+                            <h4>Actionable Output</h4>
+                            <p>The final output is delivered as daily insights, personalized briefings, and strategic recommendations directly to reps and commercial leaders.</p>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </section>
 
@@ -699,12 +810,11 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Paramanu.ai. All rights reserved.</p>
+        <p>&copy; 2025 Paramanu.ai. All rights reserved.</p>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Scroll Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
